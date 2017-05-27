@@ -23,9 +23,20 @@ public class App {
         ReadCSV readCSV = new ReadCSV(filename);
         dataMap = readCSV.parse();
 
+        //TODO remove debugs
+        System.out.println("dataMap.keySet() = " + dataMap.keySet());
+        System.out.println("time = " + dataMap.get(time));
         System.out.println("breathing rate = " + dataMap.get(breathingRate));
-        System.out.println("minute variation= " + dataMap.get(minuteVentilation));
+        System.out.println("sleepPosition = " + dataMap.get(minuteVentilation));
+        System.out.println("activity = " + dataMap.get(sleepPosition));
+        System.out.println("heart rate = " + dataMap.get(activity));
+        System.out.println("cadence = " + dataMap.get(cadence));
 
+        runAlgorithm();
+    }
 
+    private static void runAlgorithm() {
+        System.out.println("------------We have raw data--------------");
+        System.out.println("------------Algorithm runs here--------------");
     }
 }

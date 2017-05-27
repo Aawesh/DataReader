@@ -1,3 +1,5 @@
+import sun.rmi.runtime.Log;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -42,6 +44,7 @@ public class ReadCSV {
     public Map<String, ArrayList<String>> parse(){
         boolean header = true;
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            //TODO Remove debugs
             System.out.println("path = " + filePath);
             System.out.println("delimeter = " + delimeter);
             System.out.println("line = " + line);
@@ -52,32 +55,36 @@ public class ReadCSV {
                 }else{
                     // use comma as separator
                     String[] data = line.split(delimeter);
-                    System.out.println("data = " + data[3]);
+                    if(data.length == 7){
+                        timeList.add(ifNull(data[0]));
+                        breathingRateList.add(ifNull(data[1]));
+                        minuteVentilationList.add(ifNull(data[2]));
+                        sleepPositionList.add(ifNull(data[3]));
+                        activityList.add(ifNull(data[4]));
+                        heartRateList.add(ifNull(data[5]));
+                        cadenceList.add(ifNull(data[6]));
+/*
+                        System.out.println("data[0] = " + ifNull(data[0]));
+                        System.out.println("data[1] = " + ifNull(data[1]));
+                        System.out.println("data[2] = " + ifNull(data[2]));
+                        System.out.println("data[3] = " + ifNull(data[3]));
+                        System.out.println("data[4] = " + ifNull(data[4]));
+                        System.out.println("data[5] = " + ifNull(data[5]));
+                        System.out.println("data[6] = " + ifNull(data[6]));*/
+                    }else{
+                        //TODO LOG the error
+                        System.out.println("error: BAD DATA");
+                    }
 
-                    timeList.add(ifNull(data[0]));
-                    breathingRateList.add(ifNull(data[1]));
-                    minuteVentilationList.add(ifNull(data[2]));
-//                    sleepPositionList.add(ifNull(data[3]));
-//                    activityList.add(ifNull(data[4]));
-//                    heartRateList.add(ifNull(data[5]));
-//                    cadenceList.add(ifNull(data[6]));
-
-                    System.out.println("data[0] = " + data[0]);
-                    System.out.println("data[1] = " + data[1]);
-                    System.out.println("data[2] = " + data[2]);
-//                    System.out.println("data[3] = " + data[3]);
-//                    System.out.println("data[4] = " + data[4]);
-//                    System.out.println("data[5] = " + data[5]);
-//                    System.out.println("data[6] = " + data[6]);
                 }
             }
             dataMap.put(time,timeList);
             dataMap.put(breathingRate,breathingRateList);
             dataMap.put(minuteVentilation,minuteVentilationList);
-//            dataMap.put(sleepPosition,sleepPositionList);
-//            dataMap.put(activity,activityList);
-//            dataMap.put(heartRate,heartRateList);
-//            dataMap.put(cadence,cadenceList);
+            dataMap.put(sleepPosition,sleepPositionList);
+            dataMap.put(activity,activityList);
+            dataMap.put(heartRate,heartRateList);
+            dataMap.put(cadence,cadenceList);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -86,8 +93,8 @@ public class ReadCSV {
     }
 
     public static String ifNull(String data){
-        if(data == null){
-            return "";
+        if(data == null || data.equals("") || data.equals("nan")){
+            return "0";
         }else{
             return data;
         }
