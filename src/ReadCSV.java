@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.Map;
  */
 public class ReadCSV {
 
-    private String path;
+    private String filePath;
     private String delimeter = ",";
     private String line = "";
 
@@ -33,14 +34,15 @@ public class ReadCSV {
     private ArrayList<String> heartRateList = new ArrayList<String>();
     private ArrayList<String> cadenceList = new ArrayList<String>();
 
-    public ReadCSV(String path){
-        this.path = path;
+    public ReadCSV(String filename){
+        String absolutePath = new File("").getAbsolutePath();
+        this.filePath = absolutePath.substring(0,absolutePath.lastIndexOf("/")+1) + "raw/" + filename;
     }
 
     public Map<String, ArrayList<String>> parse(){
         boolean header = true;
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            System.out.println("path = " + path);
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            System.out.println("path = " + filePath);
             System.out.println("delimeter = " + delimeter);
             System.out.println("line = " + line);
 

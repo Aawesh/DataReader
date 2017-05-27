@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -7,7 +8,7 @@ import java.util.Map;
 public class App {
 
     public static void main(String[] args){
-        String path = "/home/aawesh/IdeaProjects/raw/record-125077.csv"; //TODO Make it geeneric path
+        String filename = "record-125077.csv";// TODO read multiple files ?
 
         String time = "time";
         String breathingRate = "breathingRate";
@@ -19,10 +20,12 @@ public class App {
 
         Map<String, ArrayList<String>> dataMap;
 
-        ReadCSV readCSV = new ReadCSV(path);
+        ReadCSV readCSV = new ReadCSV(filename);
         dataMap = readCSV.parse();
 
         System.out.println("breathing rate = " + dataMap.get(breathingRate));
         System.out.println("minute variation= " + dataMap.get(minuteVentilation));
+
+
     }
 }
