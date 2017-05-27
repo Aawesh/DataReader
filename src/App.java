@@ -27,9 +27,10 @@ public class App {
         System.out.println("dataMap.keySet() = " + dataMap.keySet());
         System.out.println("time = " + dataMap.get(time));
         System.out.println("breathing rate = " + dataMap.get(breathingRate));
-        System.out.println("sleepPosition = " + dataMap.get(minuteVentilation));
-        System.out.println("activity = " + dataMap.get(sleepPosition));
-        System.out.println("heart rate = " + dataMap.get(activity));
+        System.out.println("minuteVentilation = " + dataMap.get(minuteVentilation));
+        System.out.println("sleepPosition = " + dataMap.get(sleepPosition));
+        System.out.println("activity = " + dataMap.get(activity));
+        System.out.println("heart rate = " + dataMap.get(heartRate));
         System.out.println("cadence = " + dataMap.get(cadence));
 
         runAlgorithm();

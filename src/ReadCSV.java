@@ -73,7 +73,7 @@ public class ReadCSV {
                         System.out.println("data[6] = " + ifNull(data[6]));*/
                     }else{
                         //TODO LOG the error
-                        System.out.println("error: BAD DATA");
+                        System.out.println("INFO: BAD DATA FILTERED");
                     }
 
                 }
